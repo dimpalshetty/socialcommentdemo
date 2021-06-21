@@ -2,3 +2,12 @@
     border-color: RED;
     border-width: 2;
 }
+
+
+
+
+@media only screen and (max-width: 480px ) {
+    .tab2 {
+        display: none;
+    }
+  }

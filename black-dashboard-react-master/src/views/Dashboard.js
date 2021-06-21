@@ -59,7 +59,7 @@ function Dashboard(props) {
     <>
       <div className="content">
         <Row>
-          <Col xs="12">
+          <Col lg="12" xs="12">
             <Card className="card-chart">
               <CardHeader>
                 <Row>

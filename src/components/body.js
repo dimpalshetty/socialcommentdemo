@@ -1,3 +1,4 @@
+
 import React from 'react';
 import '../components/body.css';
 import PropTypes from 'prop-types';
@@ -7,15 +8,42 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import HomeIcon from '@material-ui/icons/Home';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Container from 'react-bootstrap/Container';
 import { PieChart } from 'react-minimal-pie-chart';
+
+import {
+    chartExample1,
+    chartExample2,
+    chartExample3,
+    chartExample4,
+} from "../components/graph.js";
+import classNames from "classnames";
+import { Line, Bar } from "react-chartjs-2";
+import {
+    Button,
+    ButtonGroup,
+    Card,
+    CardHeader,
+    CardBody,
+    CardTitle,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    UncontrolledDropdown,
+    Label,
+    FormGroup,
+    Input,
+    Table,
+    Row,
+    Col,
+    UncontrolledTooltip,
+} from "reactstrap";
+
+
 function TabPanel(props) {
+
     const { children, value, index, ...other } = props;
 
     return (
@@ -50,9 +78,11 @@ function a11yProps(index) {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        flexGrow: 1,
+
         backgroundColor: '#1F2025',
-        display: 'flex',
+      
+        height: '100%',
+        width: '100%'
 
 
     },
@@ -67,22 +97,13 @@ const useStyles = makeStyles((theme) => ({
 
     },
 
-
-    tabpanel: {
-        width: '100%',
-
-
+    flex: {
+        flexDirection:'row',
+        display : 'flex',
+        flex: 'none',
     },
 
-    card: {
-        minWidth: 300,
-        minHeight: 250,
-        flex: 1,
-        border: `1px solid`,
-        borderColor: '#B1ADC9',
-        borderRadius: 20,
-        margin: 10,
-    },
+
 
     cards: {
         minWidth: 300,
@@ -93,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: 20,
         margin: 10,
         backgroundColor: '#87CEEB'
-    }, 
+    },
     bullet: {
         display: 'inline-block',
         margin: '0 2px',
@@ -106,11 +127,6 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 12,
     },
 
-    flex: {
-
-        display: 'flex',
-
-    },
 
     pie: {
 
@@ -128,30 +144,35 @@ const useStyles = makeStyles((theme) => ({
 
     },
 
-
-
-    div: {
-        flexDirection: 'row'
+    flex1 :{
+        flexDirection: 'row',
+        display: 'flex',
     }
+
+
+
+
 }));
+
+
 
 export default function Body() {
     const classes = useStyles();
+    const [bigChartData, setbigChartData] = React.useState("data1");
+    const setBgChartData = (name) => {
+        setbigChartData(name);
+    };
+
     const [value, setValue] = React.useState(0);
-    const shiftSize = 1;
+
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
 
-    const defaultLabelStyle = {
-        fontSize: '5px',
-        fontFamily: 'sans-serif',
-        color: '#000000',
-    };
 
     return (
-        <div className={classes.root}>
+        <div className="root">
             <Tabs
                 orientation="vertical"
                 variant="scrollable"
@@ -170,176 +191,171 @@ export default function Body() {
             </Tabs>
             <TabPanel className={classes.tabpanel} value={value} index={0}>
 
-
-                <Row className={classes.flex}>
-
-                    <Col>
-
-                        <Row className={classes.flex}>
-                            <Col >
-                                <Card className={classes.card} border="danger" style={{ width: '18rem', height: 200 }}>
-                                <Row className={classes.flex}>
-                                        <Col lg={10} >hey</Col>
-                                        <Col lg={2} className={classes.col}>
-
-
-
-                                            <PieChart className={classes.pie}
-
-
-                                                data={[{ value: "+82", color: '#E38627' }]}
-                                                radius={25}
-                                                totalValue={100}
-                                                lineWidth={20}
-                                                label={({ dataEntry }) => dataEntry.value}
-                                                labelStyle={{
-                                                    fontSize: '12px',
-                                                    fontFamily: 'sans-serif',
-                                                    fill: '#E38627',
-                                                }}
-                                                labelPosition={0}
-                                            />
-
-
+                <div className="content">
+                    <Row className={classes.flex1}>
+                        <Col lg="4" xs="12" sm="12" >
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
                                         </Col>
+
                                     </Row>
-                                </Card></Col>
-                            <Col sm={12}><Card bg="primary" className={classes.cards} style={{ width: '18rem', }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Card 2</Card.Title>
-                                    <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card></Col>
-                            <Col>
-                                <Card className={classes.card} style={{ width: '10rem', height: '10rem' }}>
-                                    <Row className={classes.flex}>
-                                        <Col lg={10} >hey</Col>
-                                        <Col lg={2} className={classes.col}>
-
-
-
-                                            <PieChart className={classes.pie}
-
-
-                                                data={[{ value: "+82", color: '#E38627' }]}
-                                                radius={25}
-                                                totalValue={100}
-                                                lineWidth={20}
-                                                label={({ dataEntry }) => dataEntry.value}
-                                                labelStyle={{
-                                                    fontSize: '12px',
-                                                    fontFamily: 'sans-serif',
-                                                    fill: '#E38627',
-                                                }}
-                                                labelPosition={0}
-                                            />
-
-
-                                        </Col>
-                                    </Row>
-                                </Card>
-                            </Col>
-
-                        </Row>
-                        <Row className={classes.flex}>
-                            <Col>
-                            <Card className={classes.card} style={{ width: '18rem', }}>
-                               
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
                             </Card>
-                            </Col>
-                            <Col><Card className={classes.card} style={{ width: '18rem', }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Card 5</Card.Title>
-                                    <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card></Col>
-                        </Row>
+                        </Col>
+                        <Col lg= ' 4' xs="12" sm="12">
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
+                                        </Col>
 
-                        <Row className={classes.flex}>
-                            <Col><Card className={classes.card} style={{ width: '18rem', }}>
-                                <Card.Img variant="top" src="holder.js/100px180" />
-                                <Card.Body>
-                                    <Card.Title>Card 6</Card.Title>
-                                    <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
-                                    </Card.Text>
-                                    <Button variant="primary">Go somewhere</Button>
-                                </Card.Body>
-                            </Card></Col>
-                            <Col ><Card className={classes.card} style={{ width: '18rem', borderWidth: 2, }}>
-                                <Card.Title>ABC</Card.Title>
-                                <Card.Body>
-                                    <PieChart
-                                        data={[
-                                            { title: 'One', value: 25, color: '#2E9BFD' },
-                                            { title: 'Two', value: 45, color: '#6543B4' },
-                                            { title: 'Three', value: 30, color: '#FE5162' },
-                                        ]}
-                                        animate={true}
-                                        radius={40}
-                                        segmentsShift={(index) => (index === 0 ? shiftSize : 1)}
-                                        label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
-                                        labelStyle={{
-                                            fontSize: '5px',
-                                            color: 'white',
-                                            fontFamily: 'sans-serif',
-                                        }}
-                                        
-                                        lineWidth={38}
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                        <Col xs="12" sm="12" >
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
+                                        </Col>
 
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row >
+                        <Col lg="8" >
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
+                                        </Col>
 
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                        
+                        <Col lg ="4" xs="12" sm="12" >
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
+                                        </Col>
 
-                                    />;
-                                </Card.Body>
-                            </Card></Col>
-                        </Row>
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                    <Row className={classes.flex}>
+                        <Col lg="8" >
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
+                                        </Col>
 
-                    </Col>
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                        
+                        <Col lg ="4" xs="12" sm="12" >
+                            <Card className="card-chart">
+                                <CardHeader>
+                                    <Row>
+                                        <Col className="text-left" sm="6">
+                                            <h5 className="card-category">Total Shipments</h5>
+                                            <CardTitle tag="h2">Performance</CardTitle>
+                                        </Col>
 
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    <div className="chart-area">
+                                        <Line
+                                            data={chartExample1[bigChartData]}
+                                            options={chartExample1.options}
+                                        />
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
 
-                    <Col>
-
-
-                        hiii
-
-
-                    </Col>
-
-
-                </Row>
-
-
-                {/* <div className={classes.flex}>
-
-                    <div>
-                        <h2>col1</h2>
-                    </div>
-
-                    <div>
-                        <h2>col2</h2>
-                    </div>
-
-                </div> */}
-
-
+                </div>
 
 
 
 
 
             </TabPanel>
-            <TabPanel value={value} index={1}>
+            <TabPanel tabClassName="tab2" value={value} index={1}>
                 Item Two
             </TabPanel>
             <TabPanel value={value} index={2}>

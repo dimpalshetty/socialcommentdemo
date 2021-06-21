@@ -90,8 +90,14 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 
+    iconsearch :{
+
+        color: 'white',
+
+    },
+
     icons: {
-        color: 'secondary'
+      backgroundColor: '#2E9CFD',
 
     },
 
@@ -208,12 +214,12 @@ export default function Header() {
                     <div className={classes.sectionDesktop}>
                         <div className={classes.headersearch}>
 
-                            <IconButton aria-label="show 4 new mails" color="primary">
-                                <Badge badgeContent={4} color="secondary">
+                            <IconButton aria-label="show 4 new mails" className={classes.iconsearch}  color="dark">
+                                <Badge badgeContent={4} color="primary">
                                     <MailIcon />
                                 </Badge>
                             </IconButton>
-                            <IconButton aria-label="show 17 new notifications" color="primary">
+                            <IconButton aria-label="show 17 new notifications" className={classes.iconsearch}>
                                 <Badge badgeContent={17} color="secondary">
                                     <NotificationsIcon />
                                 </Badge>
@@ -224,7 +230,7 @@ export default function Header() {
                                 aria-controls={menuId}
                                 aria-haspopup="true"
                                 onClick={handleProfileMenuOpen}
-                                color="inherit"
+                                className={classes.iconsearch}
                             >
                                 <AccountCircle />
                             </IconButton>
@@ -232,7 +238,7 @@ export default function Header() {
                             <div className={classes.buttonSearch}>
 
 
-                                <Button className={classes.buttons} style={{ marginBottom: 3 }} variant="contained" color="primary">
+                                <Button className={classes.buttons} style={{ marginBottom: 3 }} variant="contained" color="primary" >
                                     <AddIcon style={{ paddingRight: 3 }} /> ADD
                                 </Button>
 

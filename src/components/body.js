@@ -15,7 +15,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Container from 'react-bootstrap/Container';
 import { PieChart } from 'react-minimal-pie-chart';
-
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -54,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         backgroundColor: '#1F2025',
         display: 'flex',
-        height: '100%',
+
 
     },
     tabs: {
@@ -71,13 +70,30 @@ const useStyles = makeStyles((theme) => ({
 
     tabpanel: {
         width: '100%',
-        height: '100%',
+
+
     },
 
     card: {
-        minWidth: 275,
+        minWidth: 300,
+        minHeight: 250,
         flex: 1,
+        border: `1px solid`,
+        borderColor: '#B1ADC9',
+        borderRadius: 20,
+        margin: 10,
     },
+
+    cards: {
+        minWidth: 300,
+        minHeight: 250,
+        flex: 1,
+        border: `1px solid`,
+        borderColor: '#B1ADC9',
+        borderRadius: 20,
+        margin: 10,
+        backgroundColor: '#87CEEB'
+    }, 
     bullet: {
         display: 'inline-block',
         margin: '0 2px',
@@ -95,6 +111,24 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
 
     },
+
+    pie: {
+
+        height: '40%',
+        position: 'relative',
+        width: 380,
+        padding: 0,
+
+    },
+
+
+    col: {
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+
+
 
     div: {
         flexDirection: 'row'
@@ -114,7 +148,7 @@ export default function Body() {
         fontSize: '5px',
         fontFamily: 'sans-serif',
         color: '#000000',
-      };
+    };
 
     return (
         <div className={classes.root}>
@@ -142,101 +176,135 @@ export default function Body() {
                     <Col>
 
                         <Row className={classes.flex}>
-                            <Col sm={12}><Card  border="primary" border-width='10px'  style={{ width: '18rem'}}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
-                                        <Card.Title>Card 1</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
+                            <Col >
+                                <Card className={classes.card} border="danger" style={{ width: '18rem', height: 200 }}>
+                                <Row className={classes.flex}>
+                                        <Col lg={10} >hey</Col>
+                                        <Col lg={2} className={classes.col}>
+
+
+
+                                            <PieChart className={classes.pie}
+
+
+                                                data={[{ value: "+82", color: '#E38627' }]}
+                                                radius={25}
+                                                totalValue={100}
+                                                lineWidth={20}
+                                                label={({ dataEntry }) => dataEntry.value}
+                                                labelStyle={{
+                                                    fontSize: '12px',
+                                                    fontFamily: 'sans-serif',
+                                                    fill: '#E38627',
+                                                }}
+                                                labelPosition={0}
+                                            />
+
+
+                                        </Col>
+                                    </Row>
                                 </Card></Col>
-                            <Col sm={12}><Card style={{ width: '18rem', borderWidth: 2, borderColor: '#FFFF00' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
-                                        <Card.Title>Card 2</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
-                                </Card></Col>
-                            <Col><Card style={{ width: '18rem', borderWidth: 2, borderColor: '#FFFF00' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
-                                        <Card.Title>Card 3</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
-                                </Card></Col>
+                            <Col sm={12}><Card bg="primary" className={classes.cards} style={{ width: '18rem', }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Card 2</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card></Col>
+                            <Col>
+                                <Card className={classes.card} style={{ width: '10rem', height: '10rem' }}>
+                                    <Row className={classes.flex}>
+                                        <Col lg={10} >hey</Col>
+                                        <Col lg={2} className={classes.col}>
+
+
+
+                                            <PieChart className={classes.pie}
+
+
+                                                data={[{ value: "+82", color: '#E38627' }]}
+                                                radius={25}
+                                                totalValue={100}
+                                                lineWidth={20}
+                                                label={({ dataEntry }) => dataEntry.value}
+                                                labelStyle={{
+                                                    fontSize: '12px',
+                                                    fontFamily: 'sans-serif',
+                                                    fill: '#E38627',
+                                                }}
+                                                labelPosition={0}
+                                            />
+
+
+                                        </Col>
+                                    </Row>
+                                </Card>
+                            </Col>
 
                         </Row>
                         <Row className={classes.flex}>
-                        <Col><Card style={{ width: '18rem', borderWidth: 2, borderColor: '#FFFF00' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
-                                        <Card.Title>Card 4</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
-                                </Card></Col>
-                            <Col><Card style={{ width: '18rem', borderWidth: 2, borderColor: '#FFFF00' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
-                                        <Card.Title>Card 5</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
-                                </Card></Col>
+                            <Col>
+                            <Card className={classes.card} style={{ width: '18rem', }}>
+                               
+                            </Card>
+                            </Col>
+                            <Col><Card className={classes.card} style={{ width: '18rem', }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Card 5</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card></Col>
                         </Row>
 
                         <Row className={classes.flex}>
-                        <Col><Card style={{ width: '18rem', borderWidth: 2, borderColor: '#FFFF00' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
-                                        <Card.Title>Card 6</Card.Title>
-                                        <Card.Text>
-                                            Some quick example text to build on the card title and make up the bulk of
-                                            the card's content.
-                                        </Card.Text>
-                                        <Button variant="primary">Go somewhere</Button>
-                                    </Card.Body>
-                                </Card></Col>
-                            <Col><Card style={{ width: '18rem', borderWidth: 2, borderColor: '#FFFF00' }}>
-                                    <Card.Img variant="top" src="holder.js/100px180" />
-                                    <Card.Body>
+                            <Col><Card className={classes.card} style={{ width: '18rem', }}>
+                                <Card.Img variant="top" src="holder.js/100px180" />
+                                <Card.Body>
+                                    <Card.Title>Card 6</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
+                                    </Card.Text>
+                                    <Button variant="primary">Go somewhere</Button>
+                                </Card.Body>
+                            </Card></Col>
+                            <Col ><Card className={classes.card} style={{ width: '18rem', borderWidth: 2, }}>
+                                <Card.Title>ABC</Card.Title>
+                                <Card.Body>
                                     <PieChart
-  data={[
-    { title: 'One', value: 25, color: '#2E9BFD' },
-    { title: 'Two', value: 45, color: '#6543B4' },
-    { title: 'Three', value: 30, color: '#FE5162' },
-  ]}
-  animate={true}
-  segmentsShift={(index) => (index === 0 ? shiftSize : 0.5)}
-  label={({ dataEntry }) => dataEntry.value}
-  labelStyle={{
-          ...defaultLabelStyle,
-        }}
-      
+                                        data={[
+                                            { title: 'One', value: 25, color: '#2E9BFD' },
+                                            { title: 'Two', value: 45, color: '#6543B4' },
+                                            { title: 'Three', value: 30, color: '#FE5162' },
+                                        ]}
+                                        animate={true}
+                                        radius={40}
+                                        segmentsShift={(index) => (index === 0 ? shiftSize : 1)}
+                                        label={({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
+                                        labelStyle={{
+                                            fontSize: '5px',
+                                            color: 'white',
+                                            fontFamily: 'sans-serif',
+                                        }}
+                                        
+                                        lineWidth={38}
 
-       
-/>;
-                                    </Card.Body>
-                                </Card></Col>
+
+
+                                    />;
+                                </Card.Body>
+                            </Card></Col>
                         </Row>
-                        
+
                     </Col>
 
 
